@@ -3,21 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aetna Automation</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        .section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; }
+        .section h3 { margin: 0 0 15px 0; color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="file"] { 
+            width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; 
+        }
+        button { background: #4CAF50; color: white; padding: 15px 30px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; }
+        button:hover { background: #45a049; }
+        .status { margin-top: 20px; padding: 15px; border-radius: 5px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+    </style>
 </head>
 <body>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-</form>
+    <h1>🚀 Aetna Form Automation</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- SECTION 1: Manual Submitter Info -->
+        <div class="section">
+            <h3>👤 Submitter Information (Manual Input)</h3>
+            {{ form.submitter_first_name.label_tag }} {{ form.submitter_first_name }}
+            {{ form.submitter_last_name.label_tag }} {{ form.submitter_last_name }}
+            {{ form.submitter_email.label_tag }} {{ form.submitter_email }}
+            {{ form.submitter_phone.label_tag }} {{ form.submitter_phone }}
+            {{ form.submitter_ext.label_tag }} {{ form.submitter_ext }}
+            {{ form.submitter_fax.label_tag }} {{ form.submitter_fax }}
+        </div>
+        
+        <!-- SECTION 2: Provider PDF -->
+        <div class="section">
+            <h3>📄 Provider PDF (Auto-Extract)</h3>
+            {{ form.provider_name.label_tag }} {{ form.provider_name }}
+            {{ form.pdf_file.label_tag }} {{ form.pdf_file }}
+            <small>CAQH Provider Profile PDF select karo</small>
+        </div>
+        
+        <button type="submit">🚀 Extract Data + Auto-Fill Aetna Form</button>
+    </form>
 
-{% if status_message %}
-    <div style="margin-top:10px; padding:10px; background:#f0f0f0; border-radius:5px;">
-        {{ status_message }}
-    </div>
-{% endif %}
-
-
+    {% if status_message %}
+        <div class="status success">{{ status_message }}</div>
+    {% endif %}
 </body>
 </html>

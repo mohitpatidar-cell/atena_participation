@@ -32,7 +32,7 @@ import os
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
+print("gemini======",GEMINI_API_KEY)
 # Application definition
 
 INSTALLED_APPS = [
